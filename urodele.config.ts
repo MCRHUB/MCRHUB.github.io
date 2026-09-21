@@ -12,7 +12,7 @@ export const config = {
   },
   footer: {
     copyright: "© MCRHUB",
-    copyrightUrl: "#",
+    copyrightUrl: "",
   },
   pagination: {
     size: 10,
