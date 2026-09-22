@@ -6,7 +6,6 @@ import UnoCSS from "unocss/astro";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://MCRHUB.github.io',
-  base: '/notebooks', // 关键：强制指定基础路径
   output: import.meta.env.DEV ? 'server' : 'static',
   integrations: [UnoCSS({ injectReset: true })],
   server: {
