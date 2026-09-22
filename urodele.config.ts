@@ -8,7 +8,7 @@ export const config = {
   head: {
     title: "MCRHUB",
     brand: "MCRHUB",
-    description: "A self-owned full-static blog system",
+    description: "记录、分享、思考",
      base: "/notebooks", // 加上这一行，解决样式丢失问题
   },
   footer: {
