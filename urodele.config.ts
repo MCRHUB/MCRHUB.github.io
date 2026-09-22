@@ -6,8 +6,8 @@ export const config = {
     logInAuthUrl: "",
   },
   head: {
-    title: "行到水穷处，坐看云起时",
-    brand: "个人博客",
+    title: "",
+    brand: "行到水穷处，坐看云起时",
     description: "记录、分享、思考",
      base: "/notebooks", // 加上这一行，解决样式丢失问题
   },
