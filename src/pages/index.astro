@@ -6,5 +6,6 @@ import config from "urodele.config";
 const posts = sortByPin(await getPageList());
 
 const pageSize = config.pagination.size;
+---
 
 <Home posts={posts.slice(0, pageSize)} page={0} pages={Math.ceil(posts.length / pageSize)} />
