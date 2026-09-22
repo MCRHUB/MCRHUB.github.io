@@ -60,53 +60,49 @@ const { posts, page, pages } = Astro.props;
 </Layout>
 
 <style>
-  /* ===== 顶部标题区样式 ===== */
+  /* ===== 顶部标题区 ===== */
   .hero-header {
     text-align: center;
-    padding: 60px 20px 40px;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    border-bottom: 1px solid #eaeaea;
+    padding: 80px 20px 60px;
+    background: #ffffff; /* 纯白背景，极简 */
+    border-bottom: 1px solid #f0f0f0;
   }
+
   .brand-title {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 800;
     color: #1a1a1a;
-    margin: 0 0 12px;
-    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    letter-spacing: -0.03em;
   }
-  .title-line {
-    width: 48px;
-    height: 4px;
-    background: #2563eb;
-    border-radius: 2px;
-    margin: 0 auto 16px;
-  }
+
+  /* 去掉那个蓝色横条，改成优雅的小字 */
   .brand-desc {
     font-size: 15px;
-    color: #64748b;
+    color: #94a3b8;
     margin: 0;
+    font-weight: 400;
   }
 
   /* ===== 文章列表容器 ===== */
   .content-wrapper {
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 32px 24px 60px;
+    padding: 40px 24px 80px;
   }
 
   /* ===== 文章卡片样式 ===== */
   .post-card {
     background: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 16px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
     padding: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     transition: all 0.25s ease;
   }
   .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
-    border-color: #dbeafe;
+    border-color: #e2e8f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   }
 
   /* 卡片内部链接与布局 */
@@ -124,7 +120,7 @@ const { posts, page, pages } = Astro.props;
     gap: 8px;
   }
   .post-title {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
     color: #1a1a1a;
     margin: 0;
@@ -147,19 +143,19 @@ const { posts, page, pages } = Astro.props;
   .post-cover {
     width: 120px;
     height: 80px;
-    border-radius: 12px;
+    border-radius: 8px;
     object-fit: cover;
     flex-shrink: 0;
   }
 
-  /* 卡片底部信息（标签和日期） */
+  /* 卡片底部信息 */
   .card-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 16px;
     padding-top: 12px;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid #f8fafc;
   }
   .tag-list {
     display: flex;
@@ -167,17 +163,17 @@ const { posts, page, pages } = Astro.props;
     flex-wrap: wrap;
   }
   .tag-pill {
-    background: #eff6ff;
-    color: #2563eb;
+    background: #f1f5f9;
+    color: #475569;
     font-size: 12px;
     font-weight: 500;
     padding: 3px 10px;
-    border-radius: 6px;
+    border-radius: 4px;
     text-decoration: none;
     transition: background 0.2s;
   }
   .tag-pill:hover {
-    background: #dbeafe;
+    background: #e2e8f0;
   }
   .post-date {
     font-size: 12px;
@@ -188,13 +184,13 @@ const { posts, page, pages } = Astro.props;
   /* ===== 移动端适配 ===== */
   @media (max-width: 640px) {
     .hero-header {
-      padding: 40px 16px 24px;
+      padding: 50px 16px 40px;
     }
     .brand-title {
-      font-size: 28px;
+      font-size: 30px;
     }
     .content-wrapper {
-      padding: 20px 16px 40px;
+      padding: 24px 16px 60px;
     }
     .post-card {
       padding: 20px;
