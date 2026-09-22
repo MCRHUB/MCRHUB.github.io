@@ -1,11 +1,78 @@
 ---
-import { sortByPin } from "@/shared/tag";
-import Home from "../components/Home.astro";
-import { getPageList } from "./api/post/list";
-import config from "urodele.config";
-const posts = sortByPin(await getPageList());
+// src/pages/index.astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
 
-const pageSize = config.pagination.size;
+const posts = await getCollection('post');
+// 按日期降序排列
+posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
 
-<Home posts={posts.slice(0, pageSize)} page={0} pages={Math.ceil(posts.length / pageSize)} />
+<BaseLayout>
+  <!-- 站点标题区 -->
+  <section class="hero-section">
+    <h1 class="site-title">{Astro.site?.hostname === 'mchub.github.io' ? 'MCRHUB' : '我的博客'}</h1>
+    <div class="title-underline"></div>
+    <p class="site-subtitle">记录、分享、思考</p>
+  </section>
+
+  <!-- 文章卡片列表 -->
+  <section class="post-grid">
+    {posts.map((post) => (
+      <PostCard post={post} />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: #ffffff;
+  }
+
+  .site-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .title-underline {
+    width: 48px;
+    height: 4px;
+    background: #2563eb; /* 蓝色装饰条 */
+    border-radius: 2px;
+    margin: 0 auto 16px;
+  }
+
+  .site-subtitle {
+    font-size: 15px;
+    color: #888;
+    margin: 0;
+  }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 24px 60px;
+  }
+
+  @media (max-width: 640px) {
+    .post-grid {
+      grid-template-columns: 1fr;
+      padding: 16px 16px 40px;
+    }
+    .hero-section {
+      padding: 40px 16px 24px;
+    }
+    .site-title {
+      font-size: 28px;
+    }
+  }
+</style>
