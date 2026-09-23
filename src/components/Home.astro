@@ -35,9 +35,11 @@ const { posts, page, pages } = Astro.props;
               </div>
               <div class="card-content">
                 <div class="card-tags">
-                  {item.tags.map((tag) => (
-                    <span class="tag">#{tag}</span>
-                  ))}
+                  {item.tags
+                    .filter((tag) => !tag.startsWith("Sort-"))
+                    .map((tag) => (
+                      <span class="tag">#{tag}</span>
+                    ))}
                 </div>
                 <div class="card-title">{item.title}</div>
                 <div class="card-desc">{item.intro}</div>
