@@ -19,39 +19,41 @@ const { posts, page, pages } = Astro.props;
 </script>
 
 <Layout title={config.head.title}>
-  <div class="hero">
-    <h1>{config.head.brand}</h1>
-    <p>{config.head.description}</p>
-  </div>
+  <div class="home-wrapper">
+    <div class="hero">
+      <h1>{config.head.brand}</h1>
+      <p>{config.head.description}</p>
+    </div>
 
-  <main>
-    <div class="post-list">
-      {
-        posts.map((item, index) => (
-          <a href={`/post/${item.id}`} class="card">
-            <div class="card-index">
-              {String(index + 1).padStart(2, '0')}
-            </div>
-            <div class="card-content">
-              <div class="card-tags">
-                {item.tags.map((tag) => (
-                  <span class="tag">#{tag}</span>
-                ))}
+    <main>
+      <div class="post-list">
+        {
+          posts.map((item, index) => (
+            <a href={`/post/${item.id}`} class="card">
+              <div class="card-index">
+                {String(index + 1).padStart(2, '0')}
               </div>
-              <div class="card-title">{item.title}</div>
-              <div class="card-desc">{item.intro}</div>
-              <div class="card-footer">
-                <span class="card-date" data-acc-time={item.createTime} />
+              <div class="card-content">
+                <div class="card-tags">
+                  {item.tags.map((tag) => (
+                    <span class="tag">#{tag}</span>
+                  ))}
+                </div>
+                <div class="card-title">{item.title}</div>
+                <div class="card-desc">{item.intro}</div>
+                <div class="card-footer">
+                  <span class="card-date" data-acc-time={item.createTime} />
+                </div>
               </div>
-            </div>
-          </a>
-        ))
-      }
-    </div>
-    <div class="pagination-wrapper">
-      <Pagination page={page} pages={pages} />
-    </div>
-  </main>
+            </a>
+          ))
+        }
+      </div>
+      <div class="pagination-wrapper">
+        <Pagination page={page} pages={pages} />
+      </div>
+    </main>
+  </div>
 </Layout>
 
 <style>
@@ -60,6 +62,22 @@ const { posts, page, pages } = Astro.props;
     background: #f5f2eb !important;
     font-family: Georgia, "Songti SC", "STSong", serif !important;
     color: #1a1a1a !important;
+  }
+
+  /* 关键：让 Home 内容独占一行，撑满 flex 容器 */
+  .home-wrapper {
+    width: 100% !important;
+    display: block !important;
+    flex: 1 1 100% !important;
+  }
+  .home-wrapper main {
+    display: block !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .home-wrapper .content {
+    max-width: 100% !important;
+    flex: none !important;
   }
 
   /* ===== 顶部标题区 ===== */
@@ -105,15 +123,9 @@ const { posts, page, pages } = Astro.props;
     transition: all 0.3s ease !important;
     cursor: pointer !important;
   }
-  .card:last-child {
-    border-bottom: none !important;
-  }
-  .card:hover {
-    padding-left: 16px !important;
-  }
-  .card:hover .card-title {
-    color: #b45309 !important;
-  }
+  .card:last-child { border-bottom: none !important; }
+  .card:hover { padding-left: 16px !important; }
+  .card:hover .card-title { color: #b45309 !important; }
 
   .card-index {
     font-size: 14px !important;
@@ -125,9 +137,7 @@ const { posts, page, pages } = Astro.props;
     flex-shrink: 0 !important;
   }
 
-  .card-content {
-    flex: 1 !important;
-  }
+  .card-content { flex: 1 !important; }
 
   .card-tags {
     display: flex !important;
@@ -187,28 +197,12 @@ const { posts, page, pages } = Astro.props;
 
   /* ===== 移动端适配 ===== */
   @media (max-width: 640px) {
-    .hero {
-      padding: 60px 16px 40px !important;
-    }
-    .hero h1 {
-      font-size: 32px !important;
-    }
-    .post-list {
-      padding: 24px 16px 0 !important;
-    }
-    .card {
-      gap: 16px !important;
-      padding: 28px 0 !important;
-    }
-    .card-index {
-      font-size: 12px !important;
-      min-width: 28px !important;
-    }
-    .card-title {
-      font-size: 20px !important;
-    }
-    .pagination-wrapper {
-      padding: 0 16px 60px !important;
-    }
+    .hero { padding: 60px 16px 40px !important; }
+    .hero h1 { font-size: 32px !important; }
+    .post-list { padding: 24px 16px 0 !important; }
+    .card { gap: 16px !important; padding: 28px 0 !important; }
+    .card-index { font-size: 12px !important; min-width: 28px !important; }
+    .card-title { font-size: 20px !important; }
+    .pagination-wrapper { padding: 0 16px 60px !important; }
   }
 </style>
