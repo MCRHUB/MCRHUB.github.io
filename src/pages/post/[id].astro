@@ -88,8 +88,48 @@ export const getStaticPaths = async () => {
 </Layout>
 
 <style is:global>
-  /* 只改背景色，其他一律不动 */
+  /* ===== 全局背景色：与首页米色一致 ===== */
   body {
     background: #f5f2eb !important;
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+    color: #1a1a1a !important;
+  }
+
+  /* ===== 所有组件的背景色，统一为米色系 ===== */
+  main,
+  main .content,
+  .ud-root,
+  .outline-wrapper,
+  .outline-wrapper > *,
+  .navigator,
+  .giscus-container {
+    background: transparent !important;
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+  }
+
+  /* 标签背景：浅琥珀色，和首页卡片标签一致 */
+  .content > .w-full.flex > a {
+    background: #fef3c7 !important;
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+  }
+
+  /* 正文、标题、链接、代码、引用，全部继承衬线字体 */
+  .ud-root *,
+  .ud-root h1,
+  .ud-root h2,
+  .ud-root h3,
+  .ud-root h4,
+  .ud-root p,
+  .ud-root a,
+  .ud-root code,
+  .ud-root pre,
+  .ud-root blockquote,
+  .ud-root li {
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+  }
+
+  /* 行内代码块背景，也统一为浅琥珀色 */
+  .ud-root code {
+    background: #fef3c7 !important;
   }
 </style>
