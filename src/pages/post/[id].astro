@@ -36,13 +36,15 @@ export const getStaticPaths = async () => {
       <div class="w-full flex gap-2 pb-2">
         {post.draft && <div class="rounded px-3 py-1 bg-yellow-200 dark:bg-yellow">draft</div>}
         {
-          post.tags.map((tag) => (
-            <a
-              href={`/tag/${encodeURIComponent(tag)}`}
-              class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
-              #{tag}
-            </a>
-          ))
+          post.tags
+            .filter((tag) => !tag.startsWith("Sort-"))
+            .map((tag) => (
+              <a
+                href={`/tag/${encodeURIComponent(tag)}`}
+                class="rounded hover:bg-gray-200 dark:hover:bg-modal px-3 py-1 cursor-pointer">
+                #{tag}
+              </a>
+            ))
         }
       </div>
       <div class="ud-root read-only flex-1" set:html={post.html} />
@@ -84,3 +86,135 @@ export const getStaticPaths = async () => {
     )
   }
 </Layout>
+
+<style is:global>
+  /* ===== 和首页保持一致：米色背景 + 衬线字体 ===== */
+  body {
+    background: #f5f2eb !important;
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+    color: #1a1a1a !important;
+  }
+
+  main {
+    display: block !important;
+  }
+  main .content {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 60px 24px !important;
+  }
+
+  /* ===== 正文排版 ===== */
+  .ud-root {
+    font-size: 17px !important;
+    line-height: 1.9 !important;
+    color: #2c2c2c !important;
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+  }
+  .ud-root h1,
+  .ud-root h2,
+  .ud-root h3,
+  .ud-root h4 {
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+  }
+  .ud-root h2 {
+    font-size: 26px !important;
+    margin: 40px 0 16px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid #ddd8ce !important;
+  }
+  .ud-root h3 {
+    font-size: 20px !important;
+    margin: 32px 0 12px !important;
+  }
+  .ud-root p {
+    margin-bottom: 20px !important;
+  }
+  .ud-root a {
+    color: #b45309 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+  }
+  .ud-root a:hover {
+    color: #92400e !important;
+  }
+  .ud-root code {
+    background: #fef3c7 !important;
+    color: #92400e !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-size: 0.9em !important;
+  }
+  .ud-root pre {
+    background: #2c1810 !important;
+    color: #f5f2eb !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    overflow-x: auto !important;
+    margin: 24px 0 !important;
+  }
+  .ud-root pre code {
+    background: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+  }
+  .ud-root blockquote {
+    border-left: 4px solid #b45309 !important;
+    padding-left: 20px !important;
+    margin: 24px 0 !important;
+    color: #666 !important;
+    font-style: italic !important;
+  }
+  .ud-root ul,
+  .ud-root ol {
+    padding-left: 24px !important;
+    margin-bottom: 20px !important;
+  }
+  .ud-root li {
+    margin-bottom: 8px !important;
+  }
+  .ud-root img {
+    max-width: 100% !important;
+    border-radius: 8px !important;
+    margin: 24px 0 !important;
+  }
+
+  /* ===== 标签样式（统一为首页的琥珀色） ===== */
+  .content > .w-full.flex > a {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #92400e !important;
+    background: #fef3c7 !important;
+    padding: 3px 10px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+  }
+
+  /* ===== 上一篇 / 下一篇 ===== */
+  .navigator a {
+    color: #b45309 !important;
+  }
+  .navigator a:hover {
+    color: #92400e !important;
+  }
+
+  /* ===== 右侧目录 outline ===== */
+  .outline-wrapper {
+    font-family: Georgia, "Songti SC", "STSong", serif !important;
+  }
+
+  /* ===== 移动端 ===== */
+  @media (max-width: 640px) {
+    main .content {
+      padding: 40px 16px !important;
+    }
+    .ud-root {
+      font-size: 16px !important;
+    }
+    .ud-root h2 {
+      font-size: 22px !important;
+    }
+  }
+</style>
