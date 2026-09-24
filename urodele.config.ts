@@ -12,7 +12,7 @@ export const config = {
      base: "/notebooks", // 加上这一行，解决样式丢失问题
   },
   footer: {
-    copyright: "© MCRHUB",
+    copyright: "© 2026 MCRHUB 版权所有",
     copyrightUrl: "",
   },
   pagination: {
